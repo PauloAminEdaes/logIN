@@ -127,6 +127,22 @@ h2::after {
   transform: translateY(-2px);
 }
 
+/* Quando o botão estiver na fase de carregamento */
+.btn.loading {
+  pointer-events: none; /* Impede novos cliques */
+  opacity: 0.8;
+}
+
+.btn i.fa-spin {
+  font-size: 20px;
+  margin-left: 10px; /* Pequeno espaço se quiser texto + ícone */
+}
+
+/* Opcional: Se quiser esconder o texto e mostrar SÓ o spinner */
+.btn.loading .btn-text {
+  display: none;
+}
+
 /* Animação de vibração do Card */
 .shake {
   animation: shakeAnim 0.3s ease-in-out;

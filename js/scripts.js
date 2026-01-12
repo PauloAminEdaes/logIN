@@ -32,23 +32,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Clique no botão (mesmo quando "morto")
   btnEntrar.addEventListener("click", (e) => {
-    // Se NÃO tiver a classe ativo, faz o shake e aumenta o erro
     if (!btnEntrar.classList.contains("ativo")) {
       e.preventDefault();
-      cliquesErro++;
+      contadorCliques++;
+      loginCard.classList.add("shake-card");
+      setTimeout(() => loginCard.classList.remove("shake-card"), 300);
 
-      // Vibra o card
-      loginCard.classList.add("shake");
-      setTimeout(() => loginCard.classList.remove("shake"), 300);
-
-      // Se insistir no clique (2 ou mais vezes)
-      if (cliquesErro >= 2) {
+      if (contadorCliques >= 2) {
         msgErro.classList.add("msg-critica");
       }
     } else {
-      alert("Login realizado com sucesso!");
+      // --- INÍCIO DO SISTEMA DE LOADING ---
+      e.preventDefault(); // Evita o recarregamento da página imediato
+
+      const btnText = btnEntrar.querySelector(".btn-text");
+      const loadingIcon = document.getElementById("loading-icon");
+
+      // Ativa o estado de loading
+      btnEntrar.classList.add("loading");
+      btnText.style.display = "none"; // Esconde o texto
+      loadingIcon.classList.remove("hidden"); // Mostra o spinner
+
+      // Simula uma requisição ao servidor de 2 segundos
+      setTimeout(() => {
+        alert(
+          "Login realizado! Redirecionando...\n \n TRAVADO !!! \n \n tela: SCRIPT.JS"
+        );
+        // Aqui você faria o redirecionamento real:
+        // window.location.href = "dashboard.html";
+      }, 2000);
+      // --- FIM DO SISTEMA DE LOADING ---
     }
   });
 
