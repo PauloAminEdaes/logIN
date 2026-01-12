@@ -3,7 +3,7 @@ const http = require("http");
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Olá do Node.js!");
+  res.end("Olá do Projetinho!");
 });
 
 server.listen(3000, () => {
