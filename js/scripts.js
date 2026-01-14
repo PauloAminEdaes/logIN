@@ -56,12 +56,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Simula uma requisição ao servidor de 2 segundos
       setTimeout(() => {
-        alert(
-          "Login realizado! Redirecionando...\n \n TRAVADO !!! \n \n tela: SCRIPT.JS"
+        mostrarMensagem(
+          `1 -Sucesso !!! Loguin realizado! Redirecionando...\n \n TRAVADO !!! \n \n  SCRIPT.JS`,
+          "sucesso"
         );
+        mostrarMensagem(
+          `2 -Alerta !!!  Redirecionando...\n \n TRAVADO !!! \n \n  SCRIPT.JS`,
+          "alerta"
+        );
+        mostrarMensagem(`3 - ERRO !!! \n TRAVADO !!! \n \n  SCRIPT.JS`, "erro");
         // Aqui você faria o redirecionamento real:
         // window.location.href = "dashboard.html";
       }, 2000);
+
       // --- FIM DO SISTEMA DE LOADING ---
     }
   });
@@ -79,3 +86,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   validar(); // Inicia o estado
 });
+
+function mostrarMensagem(texto, tipo = "sucesso") {
+  // 1. Criar o container se não existir
+  let container = document.getElementById("msg-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "msg-container";
+    document.body.appendChild(container);
+  }
+
+  // 2. Criar a box da mensagem
+  const msgBox = document.createElement("div");
+  msgBox.className = `msg-box msg-${tipo}`;
+  msgBox.innerHTML = `<span>${texto}</span>`;
+
+  // 3. Adicionar ao container
+  container.appendChild(msgBox);
+
+  // 4. Remover automaticamente após 4 segundos
+  setTimeout(() => {
+    msgBox.classList.add("fade-out");
+    setTimeout(() => msgBox.remove(), 500);
+  }, 4000);
+
+  // 5. Permitir fechar ao clicar
+  msgBox.addEventListener("click", () => msgBox.remove());
+}
+

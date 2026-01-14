@@ -39,3 +39,14 @@ git push -u origin main
 
 Dica sobre o novo Token
 Como você gerou um token novo, se o Windows ou o seu terminal pedir a senha ao executar o git pull ou git push, lembre-se: não use a sua senha do GitHub. Use o Token que você gerou no lugar da senha.
+
+######### TarefasAPP (ASP.NET) versão WEB em desenvolvimento
+
+Banco de dados SQL SERVER
+
+TarefasApp/
+├── Controllers/
+├── Models/
+├── Data/
+├── Program.cs
+└── appsettings.json
